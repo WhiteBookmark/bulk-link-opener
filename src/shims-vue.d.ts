@@ -13,3 +13,9 @@ declare var store: any;
 interface Window {
 	store: any;
 }
+
+interface navigations {
+	name: string;
+	to: string;
+	requiresAuth: boolean;
+}

@@ -8,8 +8,8 @@ export default new Vuetify({
 	theme: {
 		themes: {
 			light: {
-				primary: colors.shades.white,
-				secondary: colors.pink.base,
+				primary: colors.pink.base,
+				secondary: colors.pink.lighten5,
 				accent: colors.pink.accent4,
 				error: colors.red.base,
 				info: colors.lightBlue.base,
@@ -17,7 +17,8 @@ export default new Vuetify({
 				warning: colors.orange.base,
 			},
 			dark: {
-				primary: colors.deepPurple.base,
+				background: colors.deepPurple.base,
+				primary: colors.shades.white,
 				secondary: colors.shades.white,
 				accent: '#82B1FF',
 				error: '#FF5252',

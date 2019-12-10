@@ -3,21 +3,23 @@
 		<navigation-bar></navigation-bar>
 
 		<v-content>
-			<HelloWorld />
+			<router-view></router-view>
 		</v-content>
+
+		<footer-bar></footer-bar>
 	</v-app>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
-import HelloWorld from "@/components/HelloWorld.vue";
 import NavigationBar from "@/components/NavigationBar.vue";
+import FooterBar from "@/components/FooterBar.vue";
 
 @Component({
   components: {
-    HelloWorld,
-    NavigationBar
+    NavigationBar,
+    FooterBar
   }
 })
 export default class App extends Vue {
