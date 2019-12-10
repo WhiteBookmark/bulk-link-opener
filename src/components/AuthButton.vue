@@ -3,11 +3,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
+import { Authentication } from "@/mixins/auth";
 
 @Component
-export default class AuthButton extends Vue {
+export default class AuthButton extends Mixins<Authentication>(Authentication) {
   @Get("user@authenticated") private isAuthenticated!: boolean;
 
   get buttonText() {
@@ -21,8 +22,10 @@ export default class AuthButton extends Vue {
     if (this.isAuthenticated) {
       window.store.set("user@session", null);
       window.store.set("user@isAuthenticated", false);
+      this.auth.logout();
       return;
     }
+    this.auth.authorize();
   }
 }
 </script>

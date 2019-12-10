@@ -12,7 +12,14 @@
     "apollo:start": "vue-cli-service apollo:start"
   },
   "dependencies": {
+    "@8base/api-client": "^1.1.5",
+    "@8base/auth": "^1.1.5",
     "@mdi/js": "^4.7.95",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link": "^1.2.13",
+    "apollo-link-http": "^1.5.16",
+    "graphql": "^14.5.8",
     "graphql-type-json": "^0.3.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
@@ -27,6 +34,7 @@
     "vuex-persistedstate": "^2.7.0"
   },
   "devDependencies": {
+    "@types/ramda": "^0.26.38",
     "@typescript-eslint/eslint-plugin": "^2.11.0",
     "@typescript-eslint/parser": "^2.11.0",
     "@vue/cli-plugin-eslint": "^4.1.1",
