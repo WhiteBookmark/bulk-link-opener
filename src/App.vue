@@ -4,6 +4,7 @@
 
 		<v-content>
 			<router-view></router-view>
+			<multi-purpose-snackbar></multi-purpose-snackbar>
 		</v-content>
 
 		<footer-bar></footer-bar>
@@ -15,11 +16,13 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
 import NavigationBar from "@/components/NavigationBar.vue";
 import FooterBar from "@/components/FooterBar.vue";
+import MultiPurposeSnackbar from "@/components/MultiPurposeSnackbar.vue";
 
 @Component({
   components: {
     NavigationBar,
-    FooterBar
+    FooterBar,
+    MultiPurposeSnackbar
   }
 })
 export default class App extends Vue {

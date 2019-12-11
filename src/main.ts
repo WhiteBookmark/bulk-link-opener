@@ -3,6 +3,7 @@ import '@/registerServiceWorker';
 import vuetify from '@/plugins/vuetify';
 import VueApollo from 'vue-apollo';
 import apolloClient from '@/utils/connection';
+import '@/styles/rotate.css';
 
 // Import store first then router
 import store from '@/store/index';
