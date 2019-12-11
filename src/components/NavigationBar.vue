@@ -6,6 +6,7 @@
 
 		<v-spacer></v-spacer>
 
+		<v-btn @click="openSnack">Open Snackbar</v-btn>
 		<theme-button></theme-button>
 		<navigation-buttons></navigation-buttons>
 		<auth-button></auth-button>
@@ -29,6 +30,10 @@ export default class NavigationBar extends Vue {
   switchTheme() {
     const isThemeDark = window.store.get("settings@isThemeDark");
     window.store.set("settings@isThemeDark", !isThemeDark);
+  }
+
+  openSnack() {
+    this.$globalEvent.$emit("open-snackbar", "info", "Unknown error occured");
   }
 }
 </script>

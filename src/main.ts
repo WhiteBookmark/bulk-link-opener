@@ -1,13 +1,16 @@
 import Vue from 'vue';
+
+// Import store first then router
+import store from '@/store/index';
+import router from '@/router/index';
+
 import '@/registerServiceWorker';
 import vuetify from '@/plugins/vuetify';
 import VueApollo from 'vue-apollo';
 import apolloClient from '@/utils/connection';
 import '@/styles/rotate.css';
 
-// Import store first then router
-import store from '@/store/index';
-import router from '@/router/index';
+Vue.prototype.$globalEvent = new Vue(); // Global event bus
 
 import App from '@/App.vue';
 

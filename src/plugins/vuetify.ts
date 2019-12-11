@@ -8,6 +8,7 @@ export default new Vuetify({
 	theme: {
 		themes: {
 			light: {
+				background: colors.shades.white,
 				primary: colors.pink.base,
 				secondary: colors.pink.lighten5,
 				accent: colors.pink.accent4,
