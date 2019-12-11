@@ -46,6 +46,7 @@ export default class AuthenticationCallback extends Mixins<Authentication>(
     }
     window.store.set("user@authenticated", true);
     window.store.set("user@session", authResult.idToken);
+    this.$router.push({ name: "home" });
   }
 }
 </script>
