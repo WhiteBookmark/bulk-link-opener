@@ -1,23 +1,21 @@
 <template>
-	<div class="text-center ma-2">
-		<v-snackbar v-model="snackbar" :color="snackbarColor">
-			<v-container fluid pa-0>
-				<v-row no-gutters>
-					<v-col>
-						<span class="white--text">
-							<b>{{text}}</b>
-						</span>
-						<v-btn color="white" text @click="snackbar = false">Close</v-btn>
-					</v-col>
-				</v-row>
-				<v-row no-gutters>
-					<v-col>
-						<v-progress-linear :value="timeout"></v-progress-linear>
-					</v-col>
-				</v-row>
-			</v-container>
-		</v-snackbar>
-	</div>
+	<v-snackbar v-model="snackbar" :color="snackbarColor" :timeout="snackbarTimeout">
+		<v-container fluid pa-0>
+			<v-row no-gutters>
+				<v-col>
+					<span class="white--text float-left">
+						<b>{{text}}</b>
+					</span>
+					<v-btn color="white" text @click="snackbar = false" class="float-right">Close</v-btn>
+				</v-col>
+			</v-row>
+			<v-row no-gutters>
+				<v-col>
+					<v-progress-linear :value="timeout"></v-progress-linear>
+				</v-col>
+			</v-row>
+		</v-container>
+	</v-snackbar>
 </template>
 
 <script lang="ts">
@@ -29,6 +27,7 @@ export default class MultiPurposeSnackbar extends Vue {
   private text: string = "Unknown";
   private snackbarColor: string = "primary";
   private timeout: number = 100;
+  private snackbarTimeout: number = 3000; // In milliseconds
 
   created() {
     this.$globalEvent.$on("open-snackbar", (type: string, message: string) => {
@@ -54,12 +53,12 @@ export default class MultiPurposeSnackbar extends Vue {
       this.timeout = 100;
       const progressBarInterval = setInterval(() => {
         this.timeout -= 1;
-      }, 60);
+      }, this.snackbarTimeout / 100);
 
       // After 6000 claer the interval
       setTimeout(() => {
         clearInterval(progressBarInterval);
-      }, 6000);
+      }, this.snackbarTimeout);
     });
   }
   beforeDestroy() {

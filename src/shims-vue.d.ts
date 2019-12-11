@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { DollarApollo } from 'vue-apollo/types/vue-apollo';
 
 declare module 'vue/types/options' {
 	interface ComponentOptions<V extends Vue> {
@@ -9,6 +10,7 @@ declare module 'vue/types/options' {
 declare module 'vue/types/vue' {
 	interface Vue {
 		$globalEvent: any;
+		$apollo: DollarApollo<this>;
 	}
 }
 
@@ -31,5 +33,15 @@ declare global {
 		TokenExpiredError(): void;
 		InvalidTokenError(message: string): void;
 		default(message: string, locations: string, path: string): void;
+	}
+
+	interface User {
+		authenticated: boolean;
+		session: string | null;
+		data: string | null;
+	}
+
+	interface Settings {
+		isThemeDark: boolean;
 	}
 }

@@ -21,7 +21,7 @@ export default class AuthButton extends Mixins<Authentication>(Authentication) {
   private async buttonClick() {
     if (this.isAuthenticated) {
       window.store.set("user@session", null);
-      window.store.set("user@isAuthenticated", false);
+      window.store.set("user@authenticated", false);
       this.auth.logout();
       return;
     }

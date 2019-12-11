@@ -17,6 +17,7 @@ import { Get } from "vuex-pathify";
 import NavigationBar from "@/components/NavigationBar.vue";
 import FooterBar from "@/components/FooterBar.vue";
 import MultiPurposeSnackbar from "@/components/MultiPurposeSnackbar.vue";
+import { CURRENT_USER_QUERY } from "@/utils/graphql";
 
 @Component({
   components: {
@@ -26,10 +27,19 @@ import MultiPurposeSnackbar from "@/components/MultiPurposeSnackbar.vue";
   }
 })
 export default class App extends Vue {
-  @Get("settings@isThemeDark") private isThemeDark!: boolean;
+  @Get("settings@isThemeDark") private isThemeDark!: Settings["isThemeDark"];
+  @Get("user") private user!: User;
 
   mounted() {
     this.$vuetify.theme.dark = this.isThemeDark;
+
+    if (this.user.authenticated) {
+      this.$apollo
+        .query({ query: CURRENT_USER_QUERY })
+        .then((response: any) => {
+          window.store.set("user@data", response.data);
+        });
+    }
   }
 
   @Watch("isThemeDark")

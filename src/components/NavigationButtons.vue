@@ -4,7 +4,7 @@
 			v-for="navigation in navigations"
 			:key="navigations.indexOf(navigation)"
 			large
-      tile
+			tile
 			text
 			color="primary"
 			exact
@@ -27,7 +27,7 @@ export default class NavigationButtons extends Vue {
     },
     {
       name: "Settings",
-      to: "/",
+      to: "/Settings",
       requiresAuth: true
     }
   ];

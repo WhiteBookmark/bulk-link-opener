@@ -13,7 +13,7 @@ export default new Vuex.Store({
 	plugins: [
 		pathify.plugin,
 		createPersistedState({
-			paths: ['user@session', 'settings'],
+			paths: ['user', 'settings'],
 		}),
 	],
 });
