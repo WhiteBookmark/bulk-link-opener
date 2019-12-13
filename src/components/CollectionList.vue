@@ -1,5 +1,5 @@
 <template>
-	<ApolloQuery :query="require('@/graphql/CategoryList.gql')">
+	<ApolloQuery :query="require('@/graphql/CollectionList.gql')">
 		<template slot-scope="{ result: { loading, error, data } }">
 			<!--Show circular loading-->
 			<div class="pa-2 text-center" v-if="loading">
@@ -11,15 +11,15 @@
 			</div>
 			<!--Show the data if available-->
 			<div v-else-if="data">
-				<category-display :data="data.categoriesList.items"></category-display>
+				<collection-display :data="data.collectionsList.items"></collection-display>
 			</div>
 			<!--Data is displayed after a few seconds after it fetched from server, display skeleton loader until then-->
 			<div class="pa-2 text-center" v-else-if="!data">
-				<v-skeleton-loader loading type="list-item@3" class="mx-auto"></v-skeleton-loader>
+				<v-skeleton-loader loading type="list-item-two-line@3" class="mx-auto"></v-skeleton-loader>
 			</div>
 			<!---Last option indicates no data available on server-->
 			<div v-else class="primary--text text-center pa-2">
-				<p class="my-auto">No categories available</p>
+				<p class="my-auto">No collections available</p>
 			</div>
 		</template>
 	</ApolloQuery>
@@ -28,14 +28,14 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { mdiCheckboxMarked, mdiCheckboxBlankOutline } from "@mdi/js";
-import CategoryDisplay from "@/components/CategoryDisplay.vue";
+import CollectionDisplay from "@/components/CollectionDisplay.vue";
 
 @Component({
   components: {
-    CategoryDisplay
+    CollectionDisplay
   }
 })
-export default class CategoryList extends Vue {
+export default class CollectionList extends Vue {
   private selected: any[] = [];
 
   get Icons() {

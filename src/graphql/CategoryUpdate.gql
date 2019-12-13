@@ -1,4 +1,4 @@
-mutation UpdatCategory($id: ID, $name: String) {
+mutation UpdateCategory($id: ID, $name: String) {
   categoryUpdate(data: {name: $name, id: $id}) {
     name
   }

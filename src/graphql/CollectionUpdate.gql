@@ -1,0 +1,5 @@
+mutation UpdateCollection($id: ID, $name: String) {
+  collectionUpdate(data: {name: $name, id: $id}) {
+    name
+  }
+}

@@ -54,4 +54,11 @@ declare global {
 		id: string;
 		name: string;
 	}
+	interface Collection {
+		id: string;
+		name: string;
+		categoryId: {
+			id: string;
+		};
+	}
 }

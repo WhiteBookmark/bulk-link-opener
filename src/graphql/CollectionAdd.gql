@@ -1,0 +1,10 @@
+mutation AddCollection($name: String!, $categoryId: ID) {
+  collectionCreate(data: {name: $name, categoryId: {connect: {id: $categoryId}}}) {
+    id
+    name
+    categoryId {
+      id
+      name
+    }
+  }
+}

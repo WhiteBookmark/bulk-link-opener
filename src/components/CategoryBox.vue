@@ -1,7 +1,7 @@
 <template>
 	<v-card max-width="400" class="mx-auto">
 		<v-toolbar color="secondary" class="white--text">
-			<v-toolbar-title>Categories</v-toolbar-title>
+			<v-toolbar-title class="mx-auto">Categories</v-toolbar-title>
 		</v-toolbar>
 
 		<category-list></category-list>

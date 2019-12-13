@@ -1,0 +1,12 @@
+query ListAllCollections {
+  collectionsList {
+    items {
+      id
+      name
+      categoryId {
+        id
+        name
+      }
+    }
+  }
+}

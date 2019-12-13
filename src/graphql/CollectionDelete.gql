@@ -1,0 +1,5 @@
+mutation DeleteOneOrMany($id: ID) {
+  collectionDelete(data: {id: $id}) {
+    success
+  }
+}

@@ -1,7 +1,7 @@
 <template>
 	<ApolloMutation
-		:mutation="require('@/graphql/CategoryUpdate.gql')"
-		:variables="{ id: categoryId, name: categoryName }"
+		:mutation="require('@/graphql/CollectionUpdate.gql')"
+		:variables="{ id: collectionId, name: collectionName }"
 		@done="onDone"
 	>
 		<template v-slot="{ mutate, loading, error }">
@@ -21,15 +21,15 @@
 import { Vue, Component, PropSync, Emit } from "vue-property-decorator";
 
 @Component
-export default class CategoryAddMutation extends Vue {
+export default class CollectionUpdateMutation extends Vue {
   private dialog: boolean = false;
 
-  @PropSync("id") private categoryId!: string;
-  @PropSync("name") private categoryName!: string;
+  @PropSync("id") private collectionId!: string;
+  @PropSync("name") private collectionName!: string;
 
   @Emit()
   private onDone() {
-    this.$globalEvent.$emit("open-snackbar", "success", "Category updated");
+    this.$globalEvent.$emit("open-snackbar", "success", "Collection updated");
     return;
   }
 
