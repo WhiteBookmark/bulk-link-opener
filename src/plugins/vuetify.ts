@@ -10,7 +10,7 @@ export default new Vuetify({
 			light: {
 				background: colors.shades.white,
 				primary: colors.pink.base,
-				secondary: colors.pink.lighten5,
+				secondary: colors.pink.base,
 				accent: colors.pink.accent4,
 				error: colors.red.base,
 				info: colors.lightBlue.base,
@@ -20,7 +20,7 @@ export default new Vuetify({
 			dark: {
 				background: colors.deepPurple.base,
 				primary: colors.shades.white,
-				secondary: colors.shades.white,
+				secondary: colors.deepPurple.base,
 				accent: colors.pink.accent4,
 				error: colors.red.base,
 				info: colors.lightBlue.base,

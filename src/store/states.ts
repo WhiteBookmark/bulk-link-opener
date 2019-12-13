@@ -7,4 +7,12 @@ export default {
 	settings: {
 		isThemeDark: true,
 	},
+	selected: {
+		categories: [],
+		collections: [],
+		links: [],
+	},
+	data: {
+		categories: [],
+	},
 };

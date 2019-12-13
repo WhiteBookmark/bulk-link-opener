@@ -38,6 +38,11 @@ export default class App extends Vue {
         .query({ query: CURRENT_USER_QUERY })
         .then((response: any) => {
           window.store.set("user@data", response.data);
+        })
+        .catch(error => {
+          window.store.set("user@session", null);
+          window.store.set("user@authenticated", false);
+          this.$globalEvent.$emit("open-snackbar", "error", error.toString());
         });
     }
   }

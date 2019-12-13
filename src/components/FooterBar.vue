@@ -2,6 +2,7 @@
 	<v-footer app color="background" class="primary--text">
 		<p class="pa-0 my-auto">&copy; 2019 - Present</p>
 		<v-spacer></v-spacer>
+		<v-btn text tile color="primary" :to="{name: 'about'}" exact>About</v-btn>
 		<v-btn text href="https://github.com/WhiteBookmark/bulk-link-opener" target="_blank">
 			<v-icon>{{Icons.mdiGithubBox}}</v-icon>Github
 		</v-btn>

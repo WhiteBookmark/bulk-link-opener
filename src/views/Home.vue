@@ -4,8 +4,20 @@
 	</div>
 </template>
 
-<script>
-export default {
-	name: 'home',
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { mdiCheckboxMarked, mdiCheckboxBlankOutline } from "@mdi/js";
+
+@Component
+export default class Home extends Vue {
+  private settings: any[] = [];
+  private some: boolean = false;
+
+  get Icons() {
+    return {
+      mdiCheckboxMarked,
+      mdiCheckboxBlankOutline
+    };
+  }
 }
 </script>

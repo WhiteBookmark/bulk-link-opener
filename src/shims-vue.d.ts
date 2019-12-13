@@ -44,4 +44,14 @@ declare global {
 	interface Settings {
 		isThemeDark: boolean;
 	}
+	interface Selected {
+		categories: string[];
+		collections: string[];
+		links: string[];
+	}
+
+	interface Category {
+		id: string;
+		name: string;
+	}
 }

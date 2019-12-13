@@ -1,0 +1,8 @@
+query ListAllCategory {
+  categoriesList {
+    items {
+      id
+      name
+    }
+  }
+}

@@ -11,7 +11,7 @@
 			</v-row>
 			<v-row no-gutters>
 				<v-col>
-					<v-progress-linear :value="timeout"></v-progress-linear>
+					<v-progress-linear :value="timeout" color="white"></v-progress-linear>
 				</v-col>
 			</v-row>
 		</v-container>
