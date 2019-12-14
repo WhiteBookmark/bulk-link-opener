@@ -49,7 +49,7 @@ export default class CollectionDelete extends Vue {
           }
         })
         .then(() => {
-          // First unselect because deleting directly has no effecct on selected categories
+          // First unselect because deleting directly has no effect on selected categories
           // If we don't do this, then after deleting next category item in array will be automatically selected
           let idIndex = this.selectedCollections.findIndex(
             (selectedCollectionId: string) =>
@@ -74,7 +74,7 @@ export default class CollectionDelete extends Vue {
               "Collections deleted"
             );
             this.deletingInProgress = false;
-            this.buttonDisabled = false;
+            this.buttonDisabled = true;
             this.buttonLoading = false;
           }
         });

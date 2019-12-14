@@ -61,4 +61,12 @@ declare global {
 			id: string;
 		};
 	}
+	interface Link {
+		id: string;
+		name: string;
+		uRL: string;
+		collectionId: {
+			id: string;
+		};
+	}
 }

@@ -1,0 +1,11 @@
+mutation AddLink($url: String!, $name: String, $collectionId: ID) {
+  linkCreate(data: {uRL: $url, name: $name, collectionId: {connect: {id: $collectionId}}}) {
+    uRL
+    name
+    id
+    collectionId {
+      id
+      name
+    }
+  }
+}

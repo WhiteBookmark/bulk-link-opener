@@ -1,0 +1,5 @@
+mutation DeleteOneOrMany($id: ID) {
+  linkDelete(data: {id: $id}) {
+    success
+  }
+}

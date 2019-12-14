@@ -1,0 +1,13 @@
+query ListAllLinks {
+  linksList {
+    items {
+      id
+      name
+      uRL
+      collectionId {
+        id
+        name
+      }
+    }
+  }
+}

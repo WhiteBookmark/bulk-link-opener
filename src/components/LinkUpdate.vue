@@ -3,7 +3,7 @@
 		<template v-slot:activator="{ on }">
 			<v-btn
 				:disabled="buttonDisabled"
-				:loading="buttonLoading"
+				:loading="updateInProgress"
 				outlined
 				color="primary"
 				v-on="on"
@@ -11,7 +11,7 @@
 		</template>
 		<v-card>
 			<v-card-title>
-				<span class="headline">Modify Category</span>
+				<span class="headline">Modify Link</span>
 			</v-card-title>
 			<v-card-text>
 				<v-text-field
@@ -21,16 +21,24 @@
 					v-model="name"
 					required
 				></v-text-field>
+				<v-text-field
+					label="URL"
+					:disabled="updateInProgress"
+					:loading="updateInProgress"
+					v-model="url"
+					required
+				></v-text-field>
 			</v-card-text>
 			<v-card-actions>
 				<v-spacer></v-spacer>
 				<v-btn color="primary" text :disabled="updateInProgress" @click="dialog = false">Close</v-btn>
-				<category-update-mutation
+				<link-update-mutation
 					:id="id"
 					:name="name"
+					:url="url"
 					@pre-mutate="startUpdating"
-					@on-done="categoryUpdated"
-				></category-update-mutation>
+					@on-done="linkUpdated"
+				></link-update-mutation>
 			</v-card-actions>
 		</v-card>
 	</v-dialog>
@@ -39,66 +47,69 @@
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { Get, Sync } from "vuex-pathify";
-import CategoryUpdateMutation from "@/components/CategoryUpdateMutation.vue";
+import LinkUpdateMutation from "@/components/LinkUpdateMutation.vue";
 
 @Component({
   components: {
-    CategoryUpdateMutation
+    LinkUpdateMutation
   }
 })
-export default class CategoryUpdate extends Vue {
+export default class LinkUpdate extends Vue {
   private buttonDisabled: boolean = true;
-  private buttonLoading: boolean = false;
   private updateInProgress: boolean = false;
   private dialog: boolean = false;
   private name: string = "";
   private id: string = "";
+  private url: string = "";
 
-  @Sync("selected@categories")
-  private selectedCategories!: Selected["categories"];
+  @Sync("selected@links")
+  private selectedLinks!: Selected["links"];
 
-  @Sync("data@categories")
-  private categories!: Category[];
+  @Sync("data@links")
+  private links!: Link[];
 
-  @Get("data@categories") private categoryList!: Category[];
+  @Get("data@links") private linkList!: Link[];
 
-  private ActiveCategory() {
-    if (this.categoryList.length > 0) {
-      const selectedData: Category | undefined = this.categoryList.find(
-        category => category.id === this.selectedCategories[0]
+  private ActiveCollecion() {
+    if (this.linkList.length > 0) {
+      const selectedData: Link | undefined = this.linkList.find(
+        link => link.id === this.selectedLinks[0]
       );
 
       if (selectedData) {
         this.id = selectedData.id;
         this.name = selectedData.name;
+        this.url = selectedData.uRL;
         return;
       }
     }
     this.id = "";
     this.name = "";
+    this.url = "";
   }
 
-  @Watch("selectedCategories")
-  onSelectionChange(switchedValue: Selected["categories"]) {
+  @Watch("selectedLinks")
+  onSelectionChange(switchedValue: Selected["links"]) {
     if (switchedValue.length === 1) {
       this.buttonDisabled = false;
-      this.ActiveCategory();
+      this.ActiveCollecion();
       return;
     }
     this.buttonDisabled = true;
   }
 
-  private categoryUpdated() {
+  private linkUpdated() {
     // First unselect
-    let idIndex = this.selectedCategories.findIndex(
-      (categoryId: string) => categoryId === this.id
+    let idIndex = this.selectedLinks.findIndex(
+      (linkId: string) => linkId === this.id
     );
-    if (idIndex !== -1) this.selectedCategories.splice(idIndex, 1);
+    if (idIndex !== -1) this.selectedLinks.splice(idIndex, 1);
     // Now update it from store
-    idIndex = this.categories.findIndex(
-      (category: Category) => category.id === this.id
-    );
-    if (idIndex !== -1) this.categories[idIndex].name = this.name;
+    idIndex = this.links.findIndex((link: Link) => link.id === this.id);
+    if (idIndex !== -1) {
+      this.links[idIndex].name = this.name;
+      this.links[idIndex].uRL = this.url;
+    }
 
     this.updateInProgress = false;
     this.dialog = false;

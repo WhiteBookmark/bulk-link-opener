@@ -11,22 +11,22 @@
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { Sync } from "vuex-pathify";
-const CATEGORY_DELETE = require("@/graphql/CategoryDelete.gql");
+const LINK_DELETE = require("@/graphql/LinkDelete.gql");
 
 @Component
-export default class CategoryDelete extends Vue {
+export default class LinkDelete extends Vue {
   private buttonDisabled: boolean = true;
   private buttonLoading: boolean = false;
   private deletingInProgress: boolean = false;
 
-  @Sync("selected@categories")
-  private selectedCategories!: Selected["categories"];
+  @Sync("selected@links")
+  private selectedLinks!: Selected["links"];
 
-  @Sync("data@categories")
-  private categories!: Category[];
+  @Sync("data@links")
+  private links!: Link[];
 
-  @Watch("selectedCategories")
-  onSelectionChange(switchedValue: Selected["categories"]) {
+  @Watch("selectedLinks")
+  onSelectionChange(switchedValue: Selected["links"]) {
     if (switchedValue.length > 0) {
       this.buttonDisabled = false;
       return;
@@ -40,37 +40,38 @@ export default class CategoryDelete extends Vue {
     this.buttonDisabled = true;
     this.buttonLoading = true;
 
-    this.selectedCategories.forEach((categoryId: string) => {
+    this.selectedLinks.forEach((linkId: string) => {
       this.$apollo
         .mutate({
-          mutation: CATEGORY_DELETE,
+          mutation: LINK_DELETE,
           variables: {
-            id: categoryId
+            id: linkId
           }
         })
         .then(() => {
           // First unselect because deleting directly has no effect on selected categories
           // If we don't do this, then after deleting next category item in array will be automatically selected
-          let idIndex = this.selectedCategories.findIndex(
-            (selectedCategoryId: string) => selectedCategoryId === categoryId
+          let idIndex = this.selectedLinks.findIndex(
+            (selectedLinkId: string) =>
+              selectedLinkId === linkId
           );
-          if (idIndex !== -1) this.selectedCategories.splice(idIndex, 1);
+          if (idIndex !== -1) this.selectedLinks.splice(idIndex, 1);
 
           // Now delete it from store
-          idIndex = this.categories.findIndex(
-            (category: Category) => category.id === categoryId
+          idIndex = this.links.findIndex(
+            (link: Category) => link.id === linkId
           );
-          if (idIndex !== -1) this.categories.splice(idIndex, 1);
+          if (idIndex !== -1) this.links.splice(idIndex, 1);
         })
         .catch((error: any) => {
           this.$globalEvent.$emit("open-snackbar", "error", error.toString());
         })
         .finally(() => {
-          if (this.selectedCategories.length < 1) {
+          if (this.selectedLinks.length < 1) {
             this.$globalEvent.$emit(
               "open-snackbar",
               "success",
-              "Categories deleted"
+              "Links deleted"
             );
             this.deletingInProgress = false;
             this.buttonDisabled = true;

@@ -1,5 +1,5 @@
 <template>
-	<v-dialog v-model="dialog" :persistent="dialogPersistent" max-width="300px">
+	<v-dialog v-model="dialog" :persistent="updateInProgress" max-width="300px">
 		<template v-slot:activator="{ on }">
 			<v-btn
 				:disabled="buttonDisabled"
@@ -14,11 +14,17 @@
 				<span class="headline">Modify Collection</span>
 			</v-card-title>
 			<v-card-text>
-				<v-text-field label="Name" v-model="name" required></v-text-field>
+				<v-text-field
+					label="Name"
+					:disabled="updateInProgress"
+					:loading="updateInProgress"
+					v-model="name"
+					required
+				></v-text-field>
 			</v-card-text>
 			<v-card-actions>
 				<v-spacer></v-spacer>
-				<v-btn color="primary" text :disabled="dialogPersistent" @click="dialog = false">Close</v-btn>
+				<v-btn color="primary" text :disabled="updateInProgress" @click="dialog = false">Close</v-btn>
 				<collection-update-mutation
 					:id="id"
 					:name="name"
@@ -45,7 +51,6 @@ export default class CollectionUpdate extends Vue {
   private buttonLoading: boolean = false;
   private updateInProgress: boolean = false;
   private dialog: boolean = false;
-  private dialogPersistent: boolean = false;
   private name: string = "";
   private id: string = "";
 
@@ -95,12 +100,12 @@ export default class CollectionUpdate extends Vue {
     );
     if (idIndex !== -1) this.collections[idIndex].name = this.name;
 
-    this.dialogPersistent = false;
+    this.updateInProgress = false;
     this.dialog = false;
   }
 
   private startUpdating() {
-    this.dialogPersistent = true;
+    this.updateInProgress = true;
   }
 }
 </script>
