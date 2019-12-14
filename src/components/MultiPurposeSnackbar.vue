@@ -19,10 +19,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
+import {Sound} from '@/mixins/sound';
 
 @Component
-export default class MultiPurposeSnackbar extends Vue {
+export default class MultiPurposeSnackbar extends Mixins<Sound>(Sound) {
   private snackbar: boolean = false;
   private text: string = "Unknown";
   private snackbarColor: string = "primary";
@@ -46,6 +47,7 @@ export default class MultiPurposeSnackbar extends Vue {
           this.snackbarColor = "deep-orange";
           break;
       }
+      this.Alert();
       this.text = message;
       this.snackbar = true;
 

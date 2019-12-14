@@ -9,16 +9,18 @@
 			color="primary"
 			exact
 			:to="navigation.to"
+			@click="Navigation()"
 		>{{navigation.name}}</v-btn>
 	</div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
+import { Sound } from "@/mixins/sound";
 
 @Component
-export default class NavigationButtons extends Vue {
+export default class NavigationButtons extends Mixins<Sound>(Sound) {
   private navigationsList: navigations[] = [
     {
       name: "Home",

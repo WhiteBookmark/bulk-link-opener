@@ -5,15 +5,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { Get } from "vuex-pathify";
 import { mdiMoonWaningCrescent, mdiWeatherSunny } from "@mdi/js";
+import { Sound } from "@/mixins/sound";
 
 @Component
-export default class ThemeButton extends Vue {
+export default class ThemeButton extends Mixins<Sound>(Sound) {
   @Get("settings@isThemeDark") private isThemeDark!: boolean;
 
   switchTheme() {
+    this.Switch();
     const isThemeDark = window.store.get("settings@isThemeDark");
     window.store.set("settings@isThemeDark", !isThemeDark);
   }
