@@ -69,4 +69,32 @@ declare global {
 			id: string;
 		};
 	}
+
+	interface AllData {
+		categoriesList: {
+			items: [
+				{
+					id: string;
+					name: string;
+					category_Collection: {
+						items: [
+							{
+								id: string;
+								name: string;
+								collection_Link: {
+									items: [
+										{
+											id: string;
+											name: string;
+											uRL: string;
+										},
+									];
+								};
+							},
+						];
+					};
+				},
+			];
+		};
+	}
 }

@@ -1,4 +1,15 @@
 import Vue from 'vue';
+import App from '@/App.vue';
+
+import * as Sentry from '@sentry/browser';
+import * as Integrations from '@sentry/integrations';
+
+if (process.env.NODE_ENV === 'production') {
+	Sentry.init({
+		dsn: 'https://d2902d71c8e64527b599173f846249fd@sentry.io/1856911',
+		integrations: [new Integrations.Vue({ Vue, attachProps: true })],
+	});
+}
 
 // Import store first then router
 import store from '@/store/index';
@@ -12,8 +23,6 @@ import '@/styles/rotate.css';
 import 'vue-material-design-icons/styles.css';
 
 Vue.prototype.$globalEvent = new Vue(); // Global event bus
-
-import App from '@/App.vue';
 
 Vue.config.productionTip = true;
 window.store = store;

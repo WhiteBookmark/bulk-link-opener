@@ -1,0 +1,21 @@
+query ListAllData {
+  categoriesList(filter: {category_Collection: {some: {id: {is_not_empty: true}}}, AND: {category_Collection: {some: {collection_Link: {some: {id: {is_not_empty: true}}}}}}}) {
+    items {
+      id
+      name
+      category_Collection {
+        items {
+          id
+          name
+          collection_Link {
+            items {
+              id
+              name
+              uRL
+            }
+          }
+        }
+      }
+    }
+  }
+}
