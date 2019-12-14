@@ -37,6 +37,7 @@ export default class DataDisplay extends Mixins<Sound>(Sound) {
   @PropSync("data") private categories!: any;
 
   private openLinks(links: Link[]) {
+    this.NewTab();
     links.forEach((link: Link) => {
       window.open(link.uRL, "_blank");
     });

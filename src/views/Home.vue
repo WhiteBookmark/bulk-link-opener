@@ -3,6 +3,7 @@
 		:query="require('@/graphql/DataDisplay.gql')"
 		ref="dataDisplayApollo"
 		fetchPolicy="no-cache"
+		v-if="isAuthenticated"
 	>
 		<template slot-scope="{ result: { loading, error, data } }">
 			<!--Show circular loading-->
@@ -27,12 +28,20 @@
 			</div>
 		</template>
 	</ApolloQuery>
+	<div v-else class="text-center">
+		<div class="primary--text mt-4">
+			<u>Login to add your own category</u>
+		</div>
+
+		<data-display :data="defaultData"></data-display>
+	</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { mdiCheckboxMarked, mdiCheckboxBlankOutline } from "@mdi/js";
 import DataDisplay from "@/components/DataDisplay.vue";
+import { Get } from "vuex-pathify";
 
 @Component({
   components: {
@@ -40,6 +49,9 @@ import DataDisplay from "@/components/DataDisplay.vue";
   }
 })
 export default class Home extends Vue {
+  @Get("user@authenticated") private isAuthenticated!: boolean;
+  @Get("data@default") private defaultData!: any;
+
   get Icons() {
     return {
       mdiCheckboxMarked,

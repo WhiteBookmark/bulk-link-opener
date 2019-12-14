@@ -1,3 +1,5 @@
+import { defaultData } from '@/store/defaultData';
+
 export default {
 	user: {
 		authenticated: false,
@@ -17,5 +19,6 @@ export default {
 		collections: [],
 		links: [],
 		all: [],
+		default: defaultData,
 	},
 };
