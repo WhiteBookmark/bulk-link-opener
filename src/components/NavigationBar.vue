@@ -1,12 +1,11 @@
 <template>
 	<v-app-bar app color="background">
 		<v-toolbar-title>
-			<v-btn text @click="switchTheme" color="primary">Bulk Link Opener</v-btn>
+			<v-btn text color="primary">Bulk Link Opener</v-btn>
 		</v-toolbar-title>
 
 		<v-spacer></v-spacer>
 
-		<v-btn @click="openSnack">Open Snackbar</v-btn>
 		<theme-button></theme-button>
 		<navigation-buttons></navigation-buttons>
 		<auth-button></auth-button>
@@ -26,14 +25,5 @@ import ThemeButton from "@/components/ThemeButton.vue";
     ThemeButton
   }
 })
-export default class NavigationBar extends Vue {
-  switchTheme() {
-    const isThemeDark = window.store.get("settings@isThemeDark");
-    window.store.set("settings@isThemeDark", !isThemeDark);
-  }
-
-  openSnack() {
-    this.$globalEvent.$emit("open-snackbar", "info", "Unknown error occured");
-  }
-}
+export default class NavigationBar extends Vue {}
 </script>
