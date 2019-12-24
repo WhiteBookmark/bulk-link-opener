@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
-import {Sound} from '@/mixins/sound';
+import { Sound } from "@/mixins/sound";
 
 @Component
 export default class MultiPurposeSnackbar extends Mixins<Sound>(Sound) {
@@ -31,37 +31,42 @@ export default class MultiPurposeSnackbar extends Mixins<Sound>(Sound) {
   private snackbarTimeout: number = 3000; // In milliseconds
 
   created() {
-    this.$globalEvent.$on("open-snackbar", (type: string, message: string) => {
-      switch (type) {
-        default:
-        case "error":
-          this.snackbarColor = "red";
-          break;
-        case "info":
-          this.snackbarColor = "teal";
-          break;
-        case "success":
-          this.snackbarColor = "green";
-          break;
-        case "warning":
-          this.snackbarColor = "deep-orange";
-          break;
+    this.$globalEvent.$on(
+      "open-snackbar",
+      (type: string, message: string, sound: boolean = true) => {
+        switch (type) {
+          default:
+          case "error":
+            this.snackbarColor = "red";
+            break;
+          case "info":
+            this.snackbarColor = "teal";
+            break;
+          case "success":
+            this.snackbarColor = "green";
+            break;
+          case "warning":
+            this.snackbarColor = "deep-orange";
+            break;
+        }
+        if (sound) {
+          this.Alert();
+        }
+        this.text = message;
+        this.snackbar = true;
+
+        // Reset timeout and decrease interval periodically
+        this.timeout = 100;
+        const progressBarInterval = setInterval(() => {
+          this.timeout -= 1;
+        }, this.snackbarTimeout / 100);
+
+        // After 6000 claer the interval
+        setTimeout(() => {
+          clearInterval(progressBarInterval);
+        }, this.snackbarTimeout);
       }
-      this.Alert();
-      this.text = message;
-      this.snackbar = true;
-
-      // Reset timeout and decrease interval periodically
-      this.timeout = 100;
-      const progressBarInterval = setInterval(() => {
-        this.timeout -= 1;
-      }, this.snackbarTimeout / 100);
-
-      // After 6000 claer the interval
-      setTimeout(() => {
-        clearInterval(progressBarInterval);
-      }, this.snackbarTimeout);
-    });
+    );
   }
   beforeDestroy() {
     this.$globalEvent.$off("open-snackbar");

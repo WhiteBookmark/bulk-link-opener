@@ -3,7 +3,7 @@
 		<v-row>
 			<v-col></v-col>
 			<v-col cols="10">
-				<v-card class="mx-auto">
+				<v-card class="mx-auto" max-width="600">
 					<v-toolbar color="secondary" class="white--text">
 						<v-toolbar-title class="mx-auto">Links</v-toolbar-title>
 					</v-toolbar>

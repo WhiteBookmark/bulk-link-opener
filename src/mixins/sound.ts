@@ -26,7 +26,7 @@ export class Sound extends Vue {
 	}
 
 	private Play(): void {
-		if (process.env.NODE_ENV === 'development') {
+		if (process.env.NODE_ENV !== 'development') {
 			return;
 		}
 		this.soundInstance.play();

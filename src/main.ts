@@ -20,7 +20,6 @@ import vuetify from '@/plugins/vuetify';
 import VueApollo from 'vue-apollo';
 import apolloClient from '@/utils/connection';
 import '@/styles/rotate.css';
-import 'vue-material-design-icons/styles.css';
 
 Vue.prototype.$globalEvent = new Vue(); // Global event bus
 

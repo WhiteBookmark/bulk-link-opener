@@ -21,7 +21,7 @@ import { Sound } from "@/mixins/sound";
 
 @Component
 export default class NavigationButtons extends Mixins<Sound>(Sound) {
-  private navigationsList: navigations[] = [
+  private navigationsList: Navigations[] = [
     {
       name: "Home",
       to: "/",

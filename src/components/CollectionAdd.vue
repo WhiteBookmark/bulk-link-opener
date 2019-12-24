@@ -16,6 +16,7 @@
 							:loading="loading"
 							:disabled="loading"
 							v-model="categoryName"
+							dense
 							required
 						></v-select>
 					</v-col>
@@ -28,6 +29,7 @@
 							clearable
 							:clear-icon="Icons.mdiCloseCircle"
 							v-model="name"
+							dense
 							required
 							:loading="loading"
 							:disabled="loading"

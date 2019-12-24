@@ -10,7 +10,7 @@
 			<div class="pa-2 text-center" v-if="loading">
 				<v-progress-circular indeterminate color="primary"></v-progress-circular>
 			</div>
-			<!--Show error message if there is an error--->
+			<!--Show error message if there is an error-->
 			<div v-else-if="error" class="primary--text text-center pa-2">
 				<p class="my-auto">Unknown error occurred while fetching data via server</p>
 			</div>
@@ -22,7 +22,7 @@
 			<div class="pa-2 text-center" v-else-if="!data">
 				<v-skeleton-loader loading type="table" class="mx-auto"></v-skeleton-loader>
 			</div>
-			<!---Last option indicates no data available on server-->
+			<!--Last option indicates no data available on server-->
 			<div v-else class="primary--text text-center pa-2">
 				<p class="my-auto">No data available</p>
 			</div>

@@ -19,6 +19,7 @@
 					:disabled="updateInProgress"
 					:loading="updateInProgress"
 					v-model="name"
+          dense
 					required
 				></v-text-field>
 				<v-text-field
@@ -26,6 +27,7 @@
 					:disabled="updateInProgress"
 					:loading="updateInProgress"
 					v-model="url"
+          dense
 					required
 				></v-text-field>
 			</v-card-text>

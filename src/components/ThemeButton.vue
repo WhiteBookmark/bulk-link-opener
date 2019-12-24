@@ -18,6 +18,7 @@ export default class ThemeButton extends Mixins<Sound>(Sound) {
     this.Switch();
     const isThemeDark = window.store.get("settings@isThemeDark");
     window.store.set("settings@isThemeDark", !isThemeDark);
+    this.$globalEvent.$emit("open-snackbar", "info", "Theme Changed", false);
   }
   get Icon() {
     if (this.isThemeDark) {
