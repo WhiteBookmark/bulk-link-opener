@@ -1,7 +1,7 @@
 <template>
 	<ApolloMutation
 		:mutation="require('@/graphql/CategoryAdd.gql')"
-		:variables="{ email, name }"
+		:variables="{ name }"
 		@done="onDone"
 		@error="onError"
 	>
@@ -36,13 +36,12 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { mdiPlus, mdiCloseCircle } from "@mdi/js";
-import { Get, Sync } from "vuex-pathify";
+import { Sync } from "vuex-pathify";
 
 @Component
 export default class CategoryAdd extends Vue {
   private name: string = "";
 
-  @Get("user@data.user.email") private email!: string;
   @Sync("data@categories") private categoryList!: Category[];
 
   get Icons() {

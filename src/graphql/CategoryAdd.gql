@@ -1,5 +1,5 @@
-mutation AddCategory($name: String!, $email: String) {
-  categoryCreate(data: {name: $name, email: {connect: {email: $email}}}) {
+mutation AddCategory($name: String!) {
+  categoryCreate(data: {name: $name}) {
     id
     name
   }
