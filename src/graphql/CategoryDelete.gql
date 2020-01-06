@@ -1,5 +1,4 @@
 mutation DeleteOneOrMany($id: ID) {
-  __typename
   categoryDelete(data: {id: $id}) {
     success
   }
